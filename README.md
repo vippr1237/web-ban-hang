@@ -17,6 +17,7 @@
 ## Add your paypal client id in client/src/components/mainpages/cart/PaypalButton.js
 
 ## Run the client & server with concurrently
+### docker-compose up --build -d mongodb
 ### `npm run dev`
 
 ## Run the Express server only

@@ -25,25 +25,25 @@ function DetailProduct() {
     return (
         <>
             <div className="detail">
-                <img src={detailProduct.images.url} alt="" />
+                <img src={process.env.PUBLIC_URL + detailProduct.images.path} alt="" />
                 <div className="box-detail">
                     <div className="row">
                         <h2>{detailProduct.title}</h2>
-                        <h6>#id: {detailProduct.product_id}</h6>
+                        <h6>#Mã: {detailProduct.product_id}</h6>
                     </div>
-                    <span>$ {detailProduct.price}</span>
+                    <span>{detailProduct.price}VND</span>
                     <p>{detailProduct.description}</p>
                     <p>{detailProduct.content}</p>
                     <p>Sold: {detailProduct.sold}</p>
                     <Link to="/cart" className="cart"
                     onClick={() => addCart(detailProduct)}>
-                        Buy Now
+                        Mua Ngay
                     </Link>
                 </div>
             </div>
 
             <div>
-                <h2>Related products</h2>
+                <h2>Các Sản Phẩm Liên Quan</h2>
                 <div className="products">
                     {
                         products.map(product => {

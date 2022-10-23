@@ -43,7 +43,67 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
+// Create admin user
+const Users = require('./models/userModel');
+const userData = require('./data/admin_user');
+async function createAdminUser(userData) {
+    try {
+        userData.forEach(async(element) => {
+            const { email } = element
+            const user = await Users.findOne({email});
+            if (user) return;
+            const newUser = Users(element);
+            await newUser.save();
+            console.log("Admin Created")
+        });
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+createAdminUser(userData);
 
+// Create default category
+const Category = require('./models/categoryModel');
+const categoryData = require('./data/category');
+async function createCategory(categoryData) {
+    try {
+        categoryData.forEach(async(element) => {
+            const { name } = element
+            const category = await Category.findOne({name});
+            if (category) return;
+            const newCategory = Category(element);
+            await newCategory.save();
+            console.log("Category Created")
+        });
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+createCategory(categoryData);
+
+// Create default Product
+const Product = require('./models/productModel');
+const productData = require('./data/product');
+async function createProduct(categoryData) {
+    try {
+        productData.forEach(async(element) => {
+            const { product_id, category } = element
+            const product = await Product.findOne({product_id});
+            if (product) return;
+            const prodcut_category = await Category.findOne({name: category});
+            element["category"] = prodcut_category._id
+            const newProduct = Product(element);
+            await newProduct.save();
+            console.log("Product Created")
+        });
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+createProduct(productData);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>{

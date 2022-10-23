@@ -52,7 +52,7 @@ function Cart() {
     }
 
     const removeProduct = id =>{
-        if(window.confirm("Do you want to delete this product?")){
+        if(window.confirm("Bạn có thực sự muốn xóa sản phẩm này?")){
             cart.forEach((item, index) => {
                 if(item._id === id){
                     cart.splice(index, 1)
@@ -73,7 +73,7 @@ function Cart() {
 
         setCart([])
         addToCart([])
-        alert("You have successfully placed an order.")
+        alert("Đặt hàng thành công.")
     }
 
 
@@ -85,12 +85,12 @@ function Cart() {
             {
                 cart.map(product => (
                     <div className="detail cart" key={product._id}>
-                        <img src={product.images.url} alt="" />
+                        <img src={product.images.path} alt="" />
 
                         <div className="box-detail">
                             <h2>{product.title}</h2>
 
-                            <h3>$ {product.price * product.quantity}</h3>
+                            <h3>{product.price * product.quantity}VND</h3>
                             <p>{product.description}</p>
                             <p>{product.content}</p>
 

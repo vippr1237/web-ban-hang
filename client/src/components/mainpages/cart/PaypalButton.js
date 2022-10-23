@@ -5,7 +5,7 @@ export default class PaypalButton extends React.Component {
     render() {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
-            		console.log("The payment was succeeded!", payment);
+            		console.log("Thanh toán thành công", payment);
                     // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
                     this.props.tranSuccess(payment)
         }

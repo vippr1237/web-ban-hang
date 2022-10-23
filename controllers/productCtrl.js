@@ -75,7 +75,7 @@ const productCtrl = {
             const newProduct = new Products({
                 product_id, title: title.toLowerCase(), price, description, content, images, category
             })
-
+            
             await newProduct.save()
             res.json({msg: "Created a product"})
 

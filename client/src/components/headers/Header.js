@@ -24,8 +24,8 @@ function Header() {
     const adminRouter = () =>{
         return(
             <>
-                <li><Link to="/create_product">Create Product</Link></li>
-                <li><Link to="/category">Categories</Link></li>
+                <li><Link to="/create_product">Thêm Sản Phẩm</Link></li>
+                <li><Link to="/category">Danh Mục</Link></li>
             </>
         )
     }
@@ -33,8 +33,8 @@ function Header() {
     const loggedRouter = () =>{
         return(
             <>
-                <li><Link to="/history">History</Link></li>
-                <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
+                <li><Link to="/history">Lịch Sử</Link></li>
+                <li><Link to="/" onClick={logoutUser}>Đăng xuất</Link></li>
             </>
         )
     }
@@ -52,17 +52,17 @@ function Header() {
 
             <div className="logo">
                 <h1>
-                    <Link to="/">{isAdmin ? 'Admin' : 'DevAT Shop'}</Link>
+                    <Link to="/">{isAdmin ? 'Admin' : 'ShopGear - Chuyên Linh Kiện Máy Tính'}</Link>
                 </h1>
             </div>
 
             <ul style={styleMenu}>
-                <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
+                <li><Link to="/">{isAdmin ? 'Sản Phẩm' : 'Cửa Hàng'}</Link></li>
 
                 {isAdmin && adminRouter()}
 
                 {
-                    isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>
+                    isLogged ? loggedRouter() : <li><Link to="/login">Đăng nhập/Đăng ký</Link></li>
                 }
 
                 <li onClick={() => setMenu(!menu)}>

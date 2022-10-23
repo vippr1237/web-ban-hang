@@ -23,10 +23,10 @@ function Products() {
         setProducts([...products])
     }
 
-    const deleteProduct = async(id, public_id) => {
+    const deleteProduct = async(id, path) => {
         try {
             setLoading(true)
-            const destroyImg = axios.post('/api/destroy', {public_id},{
+            const destroyImg = axios.post('/api/destroy', {path: path},{
                 headers: {Authorization: token}
             })
             const deleteProduct = axios.delete(`/api/products/${id}`, {
@@ -52,7 +52,7 @@ function Products() {
 
     const deleteAll = () =>{
         products.forEach(product => {
-            if(product.checked) deleteProduct(product._id, product.images.public_id)
+            if(product.checked) deleteProduct(product._id, product.images.path)
         })
     }
 
