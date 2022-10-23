@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import axios from 'axios'
-import PaypalButton from './PaypalButton'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function Cart() {
     const state = useContext(GlobalState)
@@ -64,8 +64,7 @@ function Cart() {
         }
     }
 
-    const tranSuccess = async(payment) => {
-        const {paymentID, address} = payment;
+    const tranSuccess = async(paymentID, address) => {
 
         await axios.post('/api/payment', {cart, paymentID, address}, {
             headers: {Authorization: token}
@@ -111,9 +110,17 @@ function Cart() {
 
             <div className="total">
                 <h3>Total: $ {total}</h3>
-                <PaypalButton
-                total={total}
-                tranSuccess={tranSuccess} />
+                <PayPalScriptProvider options={{ "client-id": "Af3mzyH_GRt-CBFXSh_uHlDWz57decr9l7Ffh4bKofAlEa_RzQ-NW_4GFP3ZBODDzXMing-MMGPQMqRN" }}>
+                    <PayPalButtons style={{ layout: "horizontal" }} onApprove={(data, actions) => {
+                    return actions.order.capture().then((details) => {
+                        console.log(details)
+                        const address = details.purchase_units[0].shipping.address;
+                        console.log(address)
+                        const paymentId = details.purchase_units[0].payments.captures[0].id
+                        tranSuccess(paymentId, address);
+                    });
+                }}/>
+                </PayPalScriptProvider>
             </div>
         </div>
     )

@@ -129,7 +129,7 @@ function CreateProduct() {
                     loading ? <div id="file_img"><Loading /></div>
 
                     :<div id="file_img" style={styleUpload}>
-                        <img src={images ? images.path : ''} alt=""/>
+                        <img src={images ? '/' + images.path : ''} alt=""/>
                         <span onClick={handleDestroy}>X</span>
                     </div>
                 }

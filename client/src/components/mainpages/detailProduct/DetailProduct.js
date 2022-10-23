@@ -25,7 +25,7 @@ function DetailProduct() {
     return (
         <>
             <div className="detail">
-                <img src={process.env.PUBLIC_URL + detailProduct.images.path} alt="" />
+                <img src={'/' + detailProduct.images.path} alt="" />
                 <div className="box-detail">
                     <div className="row">
                         <h2>{detailProduct.title}</h2>

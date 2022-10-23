@@ -34,7 +34,7 @@ function OrderDetails() {
                 <tbody>
                     <tr>
                         <td>{orderDetails.address.recipient_name}</td>
-                        <td>{orderDetails.address.line1 + " - " + orderDetails.address.city}</td>
+                        <td>{orderDetails.address.address_line_1 + " - " + orderDetails.address.admin_area_2 + " " + orderDetails.address.admin_area_1}</td>
                         <td>{orderDetails.address.postal_code}</td>
                         <td>{orderDetails.address.country_code}</td>
                     </tr>
@@ -54,7 +54,7 @@ function OrderDetails() {
                     {
                         orderDetails.cart.map(item =>(
                         <tr key={item._id}>
-                            <td><img src={item.images.url} alt="" /></td>
+                            <td><img src={'/' + item.images.path} alt="" /></td>
                             <td>{item.title}</td>
                             <td>{item.quantity}</td>
                             <td>$ {item.price * item.quantity}</td>

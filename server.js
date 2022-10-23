@@ -46,7 +46,7 @@ if(process.env.NODE_ENV === 'production'){
 // Create admin user
 const Users = require('./models/userModel');
 const userData = require('./data/admin_user');
-async function createAdminUser(userData) {
+function createAdminUser(userData) {
     try {
         userData.forEach(async(element) => {
             const { email } = element
@@ -66,7 +66,7 @@ createAdminUser(userData);
 // Create default category
 const Category = require('./models/categoryModel');
 const categoryData = require('./data/category');
-async function createCategory(categoryData) {
+function createCategory(categoryData) {
     try {
         categoryData.forEach(async(element) => {
             const { name } = element
@@ -81,12 +81,11 @@ async function createCategory(categoryData) {
         console.log(err)
     }
 }
-createCategory(categoryData);
 
 // Create default Product
 const Product = require('./models/productModel');
 const productData = require('./data/product');
-async function createProduct(categoryData) {
+function createProduct(productData) {
     try {
         productData.forEach(async(element) => {
             const { product_id, category } = element
@@ -103,9 +102,11 @@ async function createProduct(categoryData) {
         console.log(err)
     }
 }
-createProduct(productData);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>{
     console.log('Server is running on port', PORT)
 })
+
+createCategory(categoryData);
+setTimeout(function() {createProduct(productData);}, 1000);

@@ -9,20 +9,20 @@ const userCtrl = {
             const {name, email, password} = req.body;
 
             const user = await Users.findOne({email})
-            if(user) return res.status(400).json({msg: "The email already exists."})
+            if(user) return res.status(400).json({msg: "Email đã tồn tại"})
 
             if(password.length < 6) 
-                return res.status(400).json({msg: "Password is at least 6 characters long."})
+                return res.status(400).json({msg: "Mật khẩu phải dài hơn 6 ký tự."})
 
             // Password Encryption
             const passwordHash = await bcrypt.hash(password, 10)
             const newUser = new Users({
                 name, email, password: passwordHash
             })
-
+            
             // Save mongodb
             await newUser.save()
-
+            
             // Then create jsonwebtoken to authentication
             const accesstoken = createAccessToken({id: newUser._id})
             const refreshtoken = createRefreshToken({id: newUser._id})
