@@ -31,15 +31,15 @@ function OrderHistory() {
 
     return (
         <div className="history-page">
-            <h2>History</h2>
+            <h2>Lịch Sử Giao Dịch</h2>
 
-            <h4>You have {history.length} ordered</h4>
+            <h4>Bạn có {history.length} đơn hàng</h4>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Payment ID</th>
-                        <th>Date of Purchased</th>
+                        <th>Mã giao dịch</th>
+                        <th>Ngày giao dịch</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -49,7 +49,7 @@ function OrderHistory() {
                             <tr key={items._id}>
                                 <td>{items.paymentID}</td>
                                 <td>{new Date(items.createdAt).toLocaleDateString()}</td>
-                                <td><Link to={`/history/${items._id}`}>View</Link></td>
+                                <td><Link to={`/history/${items._id}`}>Xem</Link></td>
                             </tr>
                         ))
                     }

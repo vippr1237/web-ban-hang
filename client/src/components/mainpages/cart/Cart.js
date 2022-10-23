@@ -111,7 +111,21 @@ function Cart() {
             <div className="total">
                 <h3>Total: $ {total}</h3>
                 <PayPalScriptProvider options={{ "client-id": "Af3mzyH_GRt-CBFXSh_uHlDWz57decr9l7Ffh4bKofAlEa_RzQ-NW_4GFP3ZBODDzXMing-MMGPQMqRN" }}>
-                    <PayPalButtons style={{ layout: "horizontal" }} onApprove={(data, actions) => {
+                    <PayPalButtons style={{ layout: "horizontal" }} 
+                    createOrder={(data, actions) => {
+                        const changeToUSD = total/24824;
+                        console.log(changeToUSD.toFixed(2))
+                        return actions.order.create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        value: changeToUSD.toFixed(2).toString(),
+                                    },
+                                },
+                            ],
+                        });
+                    }} 
+                    onApprove={(data, actions) => {
                     return actions.order.capture().then((details) => {
                         console.log(details)
                         const address = details.purchase_units[0].shipping.address;

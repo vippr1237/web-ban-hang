@@ -25,10 +25,10 @@ function OrderDetails() {
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Postal Code</th>
-                        <th>Country Code</th>
+                        <th>Tên</th>
+                        <th>Địa chỉ</th>
+                        <th>Mã bưu điện</th>
+                        <th>Mã quốc gia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,9 +45,9 @@ function OrderDetails() {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Products</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
                     </tr>
                 </thead>
                 <tbody>
